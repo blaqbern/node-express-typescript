@@ -5,7 +5,7 @@
   "main": "server-bundle.js",
   "scripts": {
     "clean": "rm -f ./dist/server-bundle.js",
-    "build": "npm run clean && wp --env.prod",
+    "build": "npm run clean && NODE_ENV='production' wp",
     "start": "npm run clean && wp && node ./dist/server-bundle.js"
   },
   "author": "Chris Blackburn",

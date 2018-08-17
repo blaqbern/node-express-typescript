@@ -8,7 +8,6 @@ const env = process.env.NODE_ENV
 const prod = env === 'production'
 
 const baseConfig = {
-  entry: root('src', 'index.ts'),
   output: {
     path: root('dist'),
     filename: 'server-bundle.js',
@@ -21,19 +20,21 @@ const baseConfig = {
 }
 
 const devConfig = {
+  entry: root('src', 'server.ts'),
   mode: 'development',
   devtool: 'source-map',
   performance: { hints: false },
 }
 
 const prodConfig = {
+  entry: root('src', 'app.ts'),
   mode: 'production',
   devtool: 'eval',
   optimization: { minimize: true },
 }
 
-module.exports = (env, argv) => Object.assign(
+module.exports = Object.assign(
   {},
   baseConfig,
-  env.prod ? prodConfig : devConfig
+  prod ? prodConfig : devConfig
 )
